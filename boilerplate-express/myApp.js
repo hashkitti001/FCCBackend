@@ -19,6 +19,7 @@ app.get("/json", (req,res) => {
     res.status(200).json({"message": msg})
    
 })
+//Get timestamp
 const timeStampMiddleWare = 
 app.get("/now", (req, res, next) => {
     req.time = new Date().toString()
@@ -26,5 +27,8 @@ app.get("/now", (req, res, next) => {
 }, (req, res) => {
     res.status(200).json({"time": req.time})
 })
-
+app.get("/:word/echo", (req, res) => {
+    let word = req.params.word
+    res.send({echo: word})
+})
  module.exports = app;
