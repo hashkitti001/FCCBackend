@@ -7,9 +7,12 @@ absolutePath = __dirname + "/views/index.html"
 app.get("/", (req, res) => {
     res.sendFile(absolutePath);  
 })
-app.get("/json", (req,res) => {
+app.get("/json", (req,res, next) => {
    let msg =  process.env.MESSAGE_STYLE === "uppercase"? "HELLO JSON" : "Hello json"
-    res.status(200).json({"message": msg})
+    // res.status(200).json({"message": msg})
+    //Log a string with request method, path and ip
+    console.log(`${req.method} ${req.path} - ${req.ip}`)
+    next()
 })
 
 
