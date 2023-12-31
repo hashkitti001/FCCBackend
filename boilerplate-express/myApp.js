@@ -8,7 +8,7 @@ app.get("/", (req, res) => {
     res.sendFile(absolutePath);  
 })
 app.get("/json", (req,res) => {
-   let msg =  process.env.MESSAGE_STYLE == "uppercase"? "HELLO JSON" : "Hello json"
+   let msg =  process.env.MESSAGE_STYLE === "uppercase"? "HELLO JSON" : "Hello json"
     res.status(200).json({"message": msg})
 })
 
