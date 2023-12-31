@@ -19,11 +19,11 @@ app.get("/json", (req,res) => {
     res.status(200).json({"message": msg})
    
 })
-const timeStampMiddleWare = (req, res, next) => {
+const timeStampMiddleWare = 
+app.get("/now", (req, res, next) => {
     req.time = new Date().toString()
     next()
-}
-app.get("/now", timeStampMiddleWare, (req, res) => {
+}, (req, res) => {
     res.status(200).json({"time": req.time})
 })
 
