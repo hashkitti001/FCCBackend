@@ -29,6 +29,7 @@ app.get("/now", (req, res, next) => {
 })
 app.get("/:word/echo", (req, res) => {
     let word = req.params.word
+    console.log(word)
     res.send({echo: word})
 })
  module.exports = app;
