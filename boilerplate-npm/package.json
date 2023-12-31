@@ -2,7 +2,7 @@
 	"name": "fcc-learn-npm-package-json",
 	"author":"Batman",
 	"description": "A package.json file being a package.json file",
-	"keywords": ["API", "package management"],
+	"keywords": ["API", "package management", "freecodecamp"],
 	"dependencies": {
 		"express": "^4.14.0"
 	},
