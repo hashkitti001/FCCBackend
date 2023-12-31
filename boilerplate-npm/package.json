@@ -4,6 +4,7 @@
 	"description": "A package.json file being a package.json file",
 	"keywords": ["API", "package management", "freecodecamp"],
 	"license": "Apache-2.0",
+	"version": "1.2.0",
 	"dependencies": {
 		"express": "^4.14.0"
 	},
