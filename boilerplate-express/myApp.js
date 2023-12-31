@@ -3,6 +3,7 @@ let app = express();
 const dotenv = require("dotenv").config()
 app.use(express.static(__dirname + "/public"));
 app.use("/public", express.static(__dirname + "/public"));
+//Logger middleware 
 app.use((req, res, next) => {
      //Log a string with request method, path and ip
      console.log(`${req.method} ${req.path} - ${req.ip}`)
@@ -17,36 +18,9 @@ app.get("/json", (req,res) => {
     res.status(200).json({"message": msg})
    
 })
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+app.get("/now", (req, res, next) => {
+    req.time = new Date().toString()
+    res.status(200).json({"time": req.time})
+})
 
  module.exports = app;
