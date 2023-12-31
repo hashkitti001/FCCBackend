@@ -2,14 +2,14 @@ let express = require('express');
 let app = express();
 const dotenv = require("dotenv").config()
 app.use(express.static(__dirname + "/public"));
-app.use("/public", express.static(__dirname + "/public"));
-
+app.use("/public", express.static(__dirname + "/public"))
+app.use(express.json())
 //Logger middleware 
-app.use((req, res, next) => {
-     //Log a string with request method, path and ip
-     console.log(`${req.method} ${req.path} - ${req.ip}`)
-     next()
-})
+// app.use((req, res, next) => {
+//      //Log a string with request method, path and ip
+//      console.log(`${req.method} ${req.path} - ${req.ip}`)
+//      next()
+// })
 absolutePath = __dirname + "/views/index.html"
 app.get("/", (req, res) => {
     res.sendFile(absolutePath);  
@@ -32,4 +32,13 @@ app.get("/:word/echo", (req, res) => {
     console.log(word)
     res.send({echo: word})
 })
- module.exports = app;
+
+
+app.route("/:name").get((req, res) => {
+    let {first, last} = req.query
+    res.send({name: `${first} ${last}`})
+}).post((req, res ) => {
+    let {first, last} = req.query
+    res.json({name: `${first} ${last}`})
+})
+module.exports = app;
