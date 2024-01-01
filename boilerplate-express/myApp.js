@@ -40,7 +40,7 @@ app.route("/name").get((req, res) => {
     let {first, last} = req.query
     res.send({name: `${first} ${last}`})
 }).post((req, res ) => {
-    let {first, last} = req.query
+    let {first, last} = req.body
     res.json({name: `${first} ${last}`})
 })
 module.exports = app;
