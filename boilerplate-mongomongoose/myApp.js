@@ -25,7 +25,7 @@ const createAndSavePerson = async (done) => {
     age: 19,
     favoriteFoods: ["Chocolate"]
   })
-  person.save((err, savedPerson) => {
+  await person.save((err, savedPerson) => {
     if (err) {
       console.error('Error occurred while saving:', err);
     } else {
