@@ -4,7 +4,7 @@ console.log(process.env.MONGO_URI)
 async function main() {
   // let uri = process.env.MONGO_URI;
   await mongoose.connect("mongodb+srv://admin:hachishakusama@cluster0.rmjefxt.mongodb.net", { useNewUrlParser: true, useUnifiedTopology: true })
-  console.log("Connected to", uri);
+  // console.log("Connected to", uri);
 }
 main().catch(err => console.error(err))
 let personSchema = new mongoose.Schema({
@@ -19,7 +19,16 @@ let personSchema = new mongoose.Schema({
   }
 });
 let Person =  mongoose.model("Person", personSchema)
-const createAndSavePerson = (done) => {
+const createAndSavePerson = async (done) => {
+  let person = new Person({
+    name: "Ella",
+    age: 19,
+    favoriteFoods: ["Chocolate"]
+  })
+  await person.save((err, data) => {
+      if(err) return console.error(err)
+      done(null, data)
+  })
   done(null /*, data*/);
 };
 
