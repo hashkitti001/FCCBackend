@@ -3,7 +3,7 @@ const mongoose = require("mongoose")
 console.log(process.env.MONGO_URI)
 async function main() {
   // let uri = process.env.MONGO_URI;
-  await mongoose.connect("mongodb+srv://admin:hachishakusama@cluster0.rmjefxt.mongodb.net", { useNewUrlParser: true, useUnifiedTopology: true })
+  await mongoose.connect("mongodb+srv://admin:hachishakusama@cluster0.rmjefxt.mongodb.net/dbtest", { useNewUrlParser: true, useUnifiedTopology: true })
   // console.log("Connected to", uri);
 }
 main().catch(err => console.error(err))
