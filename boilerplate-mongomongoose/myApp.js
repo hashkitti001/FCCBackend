@@ -25,12 +25,16 @@ const createAndSavePerson = async (done) => {
     age: 19,
     favoriteFoods: ["Chocolate"]
   })
-  await person.save((err, data) => {
-      if(err) return console.error(err)
-      done(null, data)
-  })
-  done(null /*, data*/);
-};
+  person.save((err, savedPerson) => {
+    if (err) {
+      console.error('Error occurred while saving:', err);
+    } else {
+      console.log('Person saved successfully:', savedPerson);
+    }
+  });
+}
+  // done(null /*, data*/);
+createAndSavePerson()
 
 const createManyPeople = (arrayOfPeople, done) => {
   done(null /*, data*/);
