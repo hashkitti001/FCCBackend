@@ -7,8 +7,18 @@ async function main() {
   console.log("Connected to", uri);
 }
 main().catch(err => console.error(err))
-let Person;
-
+let personSchema = new mongoose.Schema({
+  name: {
+    type:String
+  },
+  age: {
+    type:Number
+  },
+  favoriteFoods: {
+    type: [String]
+  }
+});
+let Person = new mongoose.model("Person", personSchema)
 const createAndSavePerson = (done) => {
   done(null /*, data*/);
 };
