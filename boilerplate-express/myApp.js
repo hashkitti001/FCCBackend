@@ -1,9 +1,11 @@
 let express = require('express');
 let app = express();
+let bodyParser = require("body-parser")
 const dotenv = require("dotenv").config()
 app.use(express.static(__dirname + "/public"));
 app.use("/public", express.static(__dirname + "/public"))
 app.use(express.json())
+app.use(bodyParser.urlencoded({extended: false}))
 //Logger middleware 
 // app.use((req, res, next) => {
 //      //Log a string with request method, path and ip
