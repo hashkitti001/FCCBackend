@@ -29,11 +29,6 @@ const createAndSavePerson = (done) => {
     })
     person.save(done);
   }
-  
-
-
-  // done(null /*, data*/);
-createAndSavePerson()
 
 const createManyPeople = (arrayOfPeople, done) => {
   console.log(arrayOfPeople);
@@ -94,16 +89,21 @@ const removeById = (personId, done) => {
 };
 
 const removeManyPeople = (done) => {
+  //Model.remove() is deprecated
   const nameToRemove = "Mary";
   Person.deleteMany({name: nameToRemove}, done)
 };
 
 const queryChain = (done) => {
   const foodToSearch = "burrito";
-
-  done(null /*, data*/);
+  Person.find({name: foodToSearch})
+  .sort({name: ""})
+  .limit(2)
+  .exec(done)
 };
-
+queryChain(() => {
+  console.log("Done!")
+})
 /** **Well Done !!**
 /* You completed these challenges, let's go celebrate !
  */
