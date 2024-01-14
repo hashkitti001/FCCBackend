@@ -99,6 +99,7 @@ const queryChain = (done) => {
   Person.find({name: 1})
   .sort({name: ""})
   .limit(2)
+  .select("-age")
   .exec((err, data) => {
     err ? done(err) : done(null, data)
   })
