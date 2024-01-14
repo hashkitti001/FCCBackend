@@ -68,8 +68,25 @@ const findAndUpdate = (personName, done) => {
   - And optional "options"
   */
   const ageToSet = 20;
-  Person.findOneAndUpdate({name: personName}, {age: ageToSet},{new: true})
-  done(null /*, data*/);
+  let filter = {name: personName};
+  let update = {age: ageToSet}
+  let options = {new: true}
+  
+  Person.findOneAndUpdate(filter, update, options, 
+    (err, record) => {
+      //Handle errors that may arise in the operation
+      if(err){
+        console.error(err)
+        return done(err)
+      }
+      //If record isn't found
+      if(!p) {
+        console.error("Person not found")
+        return done(new Error("Person not found"))
+      }
+      //If everything goes hunky dory, save the updated record
+      done(null, p)
+    })
 };
 
 const removeById = (personId, done) => {
