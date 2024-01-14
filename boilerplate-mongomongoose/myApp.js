@@ -62,8 +62,13 @@ const findEditThenSave = (personId, done) => {
 };
 
 const findAndUpdate = (personName, done) => {
+  /*The Person.findOneAndUpdate() takes three arguments 
+  - Filter - What you're searching for 
+  - Update - The update you want to make on the record
+  - And optional "options"
+  */
   const ageToSet = 20;
-
+  Person.findOneAndUpdate({name: personName}, {age: ageToSet},{new: true})
   done(null /*, data*/);
 };
 
