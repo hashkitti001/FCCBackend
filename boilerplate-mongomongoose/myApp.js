@@ -80,12 +80,12 @@ const findAndUpdate = (personName, done) => {
         return done(err)
       }
       //If record isn't found
-      if(!p) {
+      if(!record) {
         console.error("Person not found")
         return done(new Error("Person not found"))
       }
       //If everything goes hunky dory, save the updated record
-      done(null, p)
+      done(null, record)
     })
 };
 
