@@ -96,14 +96,14 @@ const removeManyPeople = (done) => {
 
 const queryChain = (done) => {
   const foodToSearch = "burrito";
-  Person.find({name: foodToSearch})
+  Person.find({name: 1})
   .sort({name: ""})
   .limit(2)
-  .exec(done)
+  .exec((err, data) => {
+    err ? done(err) : done(null, data)
+  })
 };
-queryChain(() => {
-  console.log("Done!")
-})
+
 /** **Well Done !!**
 /* You completed these challenges, let's go celebrate !
  */
