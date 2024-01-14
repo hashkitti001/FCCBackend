@@ -1,7 +1,7 @@
 const dotenv = require('dotenv').config();
 const mongoose = require("mongoose")
 console.log(process.env.MONGO_URI)
-let uri = ""
+let uri = process.env.MONGO_URI
 async function main() {
   // let uri = process.env.MONGO_URI;
   await mongoose.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true })
@@ -22,12 +22,14 @@ let personSchema = new mongoose.Schema({
 let Person =  mongoose.model("Person", personSchema)
 
 const createAndSavePerson = (done) => {
-  let Tina = new Person({name: 'Tina Snow', age: 30, favoriteFoods: ['mayo', 'garlic', 'cheddar']})
-.save((err, data)=>{
-    if (err){return console.log(err)}
-    done(null, data)
-  })
-};
+    let person = new Person({
+      name: "Tina",
+      age: 24,
+      favoriteFoods: ["Chocolate"]
+    })
+    person.save(done).then(data => console.log("saved:", data))
+  }
+  
 
 
   // done(null /*, data*/);
