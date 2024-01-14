@@ -62,7 +62,7 @@ const findEditThenSave = (personId, done) => {
 };
 
 const findAndUpdate = (personName, done) => {
-  /*The Person.findOneAndUpdate() takes three arguments 
+  /* The Person.findOneAndUpdate() takes four arguments 
   - Filter - What you're searching for 
   - Update - The update you want to make on the record
   - And optional "options"
@@ -90,7 +90,7 @@ const findAndUpdate = (personName, done) => {
 };
 
 const removeById = (personId, done) => {
-  done(null /*, data*/);
+  Person.findByIdAndRemove(personId, done)
 };
 
 const removeManyPeople = (done) => {
