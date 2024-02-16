@@ -15,22 +15,23 @@ app.use(cors({ optionsSuccessStatus: 200 }));  // some legacy browsers choke on 
 app.use(express.static('public'));
 
 // http://expressjs.com/en/starter/basic-routing.html
-app.get("/", function (req, res) {
+app.get("/", (req, res) =>{
   res.sendFile(__dirname + '/views/index.html');
 });
 
 
 // your first API endpoint... f
-app.get("/api/", function (req, res) {
+app.get("/api/", (req, res) => {
   let date = new Date()
   let unixOffset = date.getTime()
   let utc = date.toUTCString()
   res.json({ "unix": unixOffset, "utc": utc });
 });
+
 const isInvalidDate = (date) => {
   return date.toUTCString() === "Invalid Date"
 }
-app.get("/api/:date", function (req, res) {
+app.get("/api/:date", (req, res) => {
   /*There are two types of input 
   DD-MM-YY
   Numerical 
