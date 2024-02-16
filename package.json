@@ -1,8 +1,8 @@
 {
-  "name": "fcc-mongo-mongoose-challenges",
+  "name": "timestamp_api",
   "version": "0.0.1",
   "description": "A boilerplate project",
-  "main": "server.js",
+  "main": "api.js",
   "scripts": {
     "start": "node server.js"
   },
