@@ -32,8 +32,7 @@ dbConn()
 app.get('/api/shorturl/:id', async (req, res) => {
       
   try {
-    let foundURL = await Url.findOne({identifier: req.params.identifier})
-  
+    let foundURL = await Url.findOne({identifier: req.params.id})
     res.redirect(foundURL.longurl)
   } catch (e) {
     console.error("Something went wrong", e)
