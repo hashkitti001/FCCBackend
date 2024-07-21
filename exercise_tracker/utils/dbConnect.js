@@ -8,7 +8,7 @@ console.log(username, password);
 
 async function dbConnect() {
     try {
-        await mongoose.connect(`mongodb+srv://${username}:${password}@cluster0.rmjefxt.mongodb.net/`, {
+        await mongoose.connect(`mongodb+srv://${username}:${password}@cluster0.rmjefxt.mongodb.net/exercise_tracker`, {
             useNewUrlParser: true,
         });
         console.log("Connected to database!");
