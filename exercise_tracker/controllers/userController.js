@@ -1,23 +1,24 @@
-const User = require("../models/User")
-const Exercise = require("../models/Exercise")
-const {ObjectId} = require("mongodb")
+const User = require("../models/User");
+const Exercise = require("../models/Exercise");
+const { ObjectId } = require("mongodb");
+
 const createUser = async (req, res) => {
-    const { username } = req.body
+    const { username } = req.body;
     if (!username) {
-        return res.status(400).json({ "message": "Enter username in request" })
+        return res.status(400).json({ "message": "Enter username in request" });
     }
-    const newUser = new User({ username })
-    await newUser.save()
+    const newUser = new User({ username });
+    await newUser.save();
     if (newUser) {
-        console.log(newUser)
-        return res.status(200).json({ "username": newUser.username, "_id": newUser._id })
+        console.log(newUser);
+        return res.status(200).json({ "username": newUser.username, "_id": newUser._id });
     }
-}
+};
 
 const findAllUsers = async (req, res) => {
-    const users = await User.find({})
-    return res.status(200).json(users)
-}
+    const users = await User.find({});
+    return res.status(200).json(users);
+};
 
 const getLogs = async (req, res) => {
     const { _id } = req.params;
@@ -36,7 +37,7 @@ const getLogs = async (req, res) => {
         }
 
         // Build the query for exercises
-        let query = { username: creator.username };
+        let query = { _id };
 
         if (from || to) {
             query.date = {};
@@ -47,17 +48,25 @@ const getLogs = async (req, res) => {
         // Find exercises based on the query and limit
         let userCises = await Exercise.find(query).limit(parseInt(limit) || 0);
 
-      
+        // Ensure proper formatting and data types
+        userCises = userCises.map(exercise => ({
+            description: exercise.description,
+            duration: exercise.duration,
+            date: new Date(exercise.date).toDateString() // Ensure date is in Date API format
+        }));
+
         const uLog = {
             username: creator.username,
             count: userCises.length,
             _id,
             log: userCises
         };
+
         return res.status(200).json(uLog);
     } catch (error) {
         console.error(error);
         res.status(500).json({ message: "An error occurred while retrieving logs" });
     }
 };
-module.exports = { createUser, findAllUsers, getLogs }
+
+module.exports = { createUser, findAllUsers, getLogs };
